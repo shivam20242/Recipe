@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CardModal from './CardModal';
-
+import { SERVER_URL } from '../../config/config';
 const Mainpage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -17,7 +17,7 @@ const Mainpage = () => {
     const fetchAllRecipes = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5000/api/recipes`);
+            const response = await axios.get(`${SERVER_URL}/api/recipes`);
             if (response.data && response.data.data) {
                 setAllRecipes(response.data.data);
                 setPagination(response.data.pagination);
@@ -35,7 +35,7 @@ console.log(allRecipes)
 
     const handlePageChange = async (action) => {
         try {
-            await axios.post('http://localhost:5000/api/recipes/page', { action });
+            await axios.post(`${SERVER_URL}/api/recipes/page`, { action });
             fetchAllRecipes();
         } catch (error) {
             console.error('Pagination failed:', error);
@@ -53,7 +53,7 @@ console.log(allRecipes)
 
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:5000/api/search`, {
+            const response = await axios.get(`${SERVER_URL}/api/search`, {
                 params: {
                     q: searchQuery
                 }

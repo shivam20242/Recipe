@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styling/login.css'
+import { SERVER_URL } from '../../config/config';
 const Login = ({ setIsAuthenticated }) => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -23,7 +24,7 @@ const Login = ({ setIsAuthenticated }) => {
     
         try {
             console.log('Attempting login with:', formData);
-            const response = await axios.post('http://localhost:5000/api/auth/login', {
+            const response = await axios.post(`${SERVER_URL}api/auth/login`, {
                 email: formData.email,
                 password: formData.password
             });

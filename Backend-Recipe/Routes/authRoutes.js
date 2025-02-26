@@ -57,8 +57,8 @@ router.post('/login', async (req,res)=>{
             message: 'Login successful'
         });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).json({ error: error });
     }
 })
-
+//here
 module.exports = router

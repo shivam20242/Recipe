@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_KEY } from '../../config/config';
+import { API_KEY,SERVER_URL } from '../../config/config';
 const CardModal = ({ recipe }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [recipeDetails, setRecipeDetails] = useState(null);
@@ -17,7 +17,7 @@ const CardModal = ({ recipe }) => {
             }
 
             if (!isFavorite) {
-                const response = await axios.post('http://localhost:5000/api/favorites/add', 
+                const response = await axios.post(`${SERVER_URL}api/favorites/add`, 
                     {
                         recipeId: recipe.id.toString()
                     },
@@ -33,7 +33,7 @@ const CardModal = ({ recipe }) => {
                 }
             } else {
                 // Remove from favorites
-                const response = await axios.delete(`http://localhost:5000/api/favorites/remove/${recipe.id}`,
+                const response = await axios.delete(`${SERVER_URL}api/favorites/remove/${recipe.id}`,
                     {
                         headers: { 
                             'Authorization': `Bearer ${token}`,
@@ -69,7 +69,7 @@ const CardModal = ({ recipe }) => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await axios.get('http://localhost:5000/api/favorites', {
+                const response = await axios.get(`${SERVER_URL}api/favorites`, {
                     headers: { 
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'

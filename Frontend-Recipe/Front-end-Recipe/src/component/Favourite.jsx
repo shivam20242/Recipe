@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styling/favour.css'
-import { API_KEY } from '../../config/config';
+import { API_KEY,SERVER_URL } from '../../config/config';
 const Favourite = () => {
     const [favorites, setFavorites] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,7 +12,7 @@ const Favourite = () => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await axios.get('http://localhost:5000/api/favorites', {
+                const response = await axios.get(`${SERVER_URL}api/favorites`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
