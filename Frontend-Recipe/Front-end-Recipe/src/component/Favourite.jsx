@@ -12,7 +12,7 @@ const Favourite = () => {
                 const token = localStorage.getItem('token');
                 if (!token) return;
 
-                const response = await axios.get(`${SERVER_URL}api/favorites`, {
+                const response = await axios.get(`${SERVER_URL}/api/favorites`, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'

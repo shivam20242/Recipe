@@ -17,7 +17,7 @@ const CardModal = ({ recipe }) => {
             }
 
             if (!isFavorite) {
-                const response = await axios.post(`${SERVER_URL}api/favorites/add`, 
+                const response = await axios.post(`${SERVER_URL}/api/favorites/add`, 
                     {
                         recipeId: recipe.id.toString()
                     },
@@ -33,7 +33,7 @@ const CardModal = ({ recipe }) => {
                 }
             } else {
                 // Remove from favorites
-                const response = await axios.delete(`${SERVER_URL}api/favorites/remove/${recipe.id}`,
+                const response = await axios.delete(`${SERVER_URL}/api/favorites/remove/${recipe.id}`,
                     {
                         headers: { 
                             'Authorization': `Bearer ${token}`,
